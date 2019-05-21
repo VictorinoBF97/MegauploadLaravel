@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','slug','nickname','email', 'password',
+        'name','slug','nickname','phone','email', 'password',
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable
         return $this->hasMany(Archivo::class);
     }
 
-    public function owns(Archivo $file)
+    public function owns()
     {
         return $this->id == $file->user_id;
     }

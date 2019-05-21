@@ -14,11 +14,6 @@ class DatabaseSeeder extends Seeder
         factory(App\User::class, 3)->create();
         $files = factory(App\Archivo::class, 20)->create();
 
-        $files->each(function(App\Archivo $file) use ($users){
-            $file->users()->attach(
-                $users->random(random_int(1,3))
-            );
-        });
     }
 
 
