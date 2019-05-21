@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name','slug','nickname','email', 'password',
     ];
 
     /**
@@ -36,4 +36,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function files()
+    {
+        return $this->hasMany(Archivo::class);
+    }
+
+    public function owns(Archivo $file)
+    {
+        return $this->id == $file->user_id;
+    }
+
 }

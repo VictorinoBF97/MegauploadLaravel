@@ -1,6 +1,6 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
@@ -16,16 +16,11 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Archivo::class, function (Faker $faker) {
     $name = $faker->name;
     return [
+        'user_id' => random_int(1,3),
         'name' => $name,
-        'slug' => str_slug($name,'-'),
-        'nickname' => $faker->unique()->userName,
-        'phone' => $faker->phoneNumber,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'description' => $faker->text(100)
     ];
 });
