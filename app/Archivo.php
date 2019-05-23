@@ -9,7 +9,7 @@ class Archivo extends Model
     protected $table = 'files';
     
     protected $fillable = [
-        'user_id','name', 'description'
+        'user_id','name','slug','description','archivo'
     ];
 
     public function user()

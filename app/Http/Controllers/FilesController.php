@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Archivo;
 use Illuminate\Http\Request;
+use App\Http\Requests\FileRequest;
 
 class FilesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'only' => ['create' , 'store', 'edit', 'update', 'destroy']
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,9 @@ class FilesController extends Controller
      */
     public function index()
     {
-        return redirect('/');
+        $files = Archivo::paginate(10);
+
+        return view('public.files.index')->withFiles($files);
     }
 
     /**
@@ -33,18 +42,11 @@ class FilesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(FileRequest $request)
     {
-        request()->validate([
-            'name'         => 'required|min:3',
-            'description'    => 'required'
-        ],[
-            'name.required'=> 'El nombre es requerido.',
-            'name.min' => 'El nombre debe tener al menos 3 caracteres',
-            'description.required'=> 'La descripción es requerida.',
-        ]);
 
         Archivo::create([
+            'user_id' => $request->user()->id,
             'name' => request('name'),
             'slug' => str_slug(request('name'), "-"),
             'description' => request('description')
@@ -62,6 +64,7 @@ class FilesController extends Controller
     public function show($slug)
     {
         $file = Archivo::where('slug', $slug)->firstOrFail();
+
         return view('public.files.show', ['file' => $file]);
     }
 
@@ -83,16 +86,8 @@ class FilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Archivo $file)
+    public function update(FileRequest $request,Archivo $file)
     {
-        $data = request()->validate([
-            'name'         => 'required|min:3',
-            'description'    => 'required'
-        ],[
-            'name.required'=> 'El nombre es requerido.',
-            'name.min' => 'El nombre debe tener al menos 3 caracteres',
-            'description.required'=> 'La descripción es requerida.',
-        ]);
 
         $file->update([
             'name' => request('name'),

@@ -21,6 +21,7 @@ $factory->define(App\Archivo::class, function (Faker $faker) {
     return [
         'user_id' => random_int(1,3),
         'name' => $name,
+        'slug' => str_slug($name, "-"),
         'description' => $faker->text(200)
     ];
 });

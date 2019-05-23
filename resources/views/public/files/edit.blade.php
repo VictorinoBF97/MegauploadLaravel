@@ -1,4 +1,4 @@
-@extends('public.layout')
+@extends('layouts.app')
 
 @section('title', 'Edit file')
 
@@ -10,6 +10,6 @@
 
     @include('public.files.partials.form')
 
-    <button type="submit" class="btn btn-primary">Guardar archivo</button>
+    <button type="submit" class="btn btn-primary">Editar archivo</button>
 </form>
 @endsection

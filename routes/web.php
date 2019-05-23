@@ -13,8 +13,16 @@
 
 // Páginas estáticas
 Route::get('/', 'PagesController@index')->name('root');
-Route::get('/contact', 'PagesController@contact')->name('contact');
+Route::get('/contact', 'PagesController@contact')->name('contact')->middleware('auth');
 Route::get('/about', 'PagesController@about')->name('about');
 
 // Rutas para la entidad Files
 Route::resource('/files', 'FilesController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/users/{user}/files', 'UserFilesController@index')->name('userfiles.index');
+
+
