@@ -3,37 +3,40 @@
 @section('title', 'MEGAUPLOAD List')
 
 @section('content')
-<h1>Lista de Archivos</h1>
+<!-- Listado de archivos -->
+<h1>Archivos subidos</h1>
 
+    <!-- Paginación -->
     <div class="d-flex justify-content-center">
         {{ $files->links() }}
     </div>
 
     @forelse($files as $file)
-    <div class="card mb-2">
-        <div class="card-header">
-            {{ $file->name }}
+    <div class="card mb-2 border-secondary">
+        <div class="card-header bg-dark text-light">
+            <h5>{{ $file->name }}</h5>
         </div>
         <div class="card-body">
-            <h5 class="card-title"><a href="{{ route('userfiles.index', $file->user->name) }}" title="{{ $file->user->name }}'s file list">{{ $file->user->name }}</a></h5>
-            <p class="card-text">{{ str_limit($file->description, 300) }}</p>
+            <div class="row">
+                <div class="col-2">
+                    <img class="img-thumbnail mx-auto" src="{{ $file->archivo }}" alt="">
+                </div>
+                <div class="col">
+                    <h5 class="card-title">Usuario: <a href="{{ route('userfiles.index', $file->user->slug) }}" title="{{ $file->user->name }}'s file list">{{ $file->user->name }}</a></h5>
+                    <p class="card-text"><h5>Descripción:</h5>{{ str_limit($file->description, 300) }}</p>
 
+                    @include('public.files.partials.buttons')
 
-            @auth
-            <a href="/files/{{ $file->id }}/edit" class="btn btn-warning btn-sm mr-2 float-right">Editar</a>
-            <form action="/files/{{ $file->id }}" method="post" class="mr-2 float-right">
-                @csrf
-                @method('delete')
-                <button type="submit" class="btn btn-danger btn-sm">Borrar Archivo</button>
-            </form>
-            @endauth
-            <a href="/files/{{ $file->name }}" class="btn btn-primary btn-sm mr-2 float-right">Más Info</a>
+                    <a href="/files/{{ $file->slug }}" class="btn btn-primary btn-sm mr-2 float-right">More Info</a>
+                </div>
+            </div>
       </div>
     </div>
     @empty
       <p>No hay archivos</p>
     @endforelse
 
+    <!-- Paginación -->
     <div class="d-flex justify-content-center">
         {{ $files->links() }}
     </div>

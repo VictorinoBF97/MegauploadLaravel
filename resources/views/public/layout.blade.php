@@ -1,3 +1,4 @@
+<!-- Layout de los archivos -->
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>

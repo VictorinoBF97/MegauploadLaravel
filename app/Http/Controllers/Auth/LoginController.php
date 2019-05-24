@@ -9,7 +9,7 @@ class LoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Login Controller
+    | Controlador del login del usuario
     |--------------------------------------------------------------------------
     |
     | This controller handles authenticating users for the application and
@@ -21,14 +21,14 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
+     * Hacia dónde redirige después de loggearse en la aplicación
      *
      * @var string
      */
     protected $redirectTo = '/home';
 
     /**
-     * Create a new controller instance.
+     * Crear una nueva instancia en el controlador
      *
      * @return void
      */

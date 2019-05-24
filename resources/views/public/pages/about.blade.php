@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<!-- Acerca de -->
 @section('title', 'About MEGAUPLOAD')
 
 @section('content')

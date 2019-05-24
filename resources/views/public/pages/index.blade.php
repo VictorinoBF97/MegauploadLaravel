@@ -1,8 +1,7 @@
 @extends('layouts.app')
-
-@section('title', 'About IBDB')
+<!-- Página de inicio -->
+@section('title', 'Home MEGAUPLOAD')
 
 @section('content')
-<div><h1>MEGAUPLOAD</h1></div>
-<div><h3>Página de INICIO</h3>
+<h1>PÁGINA DE INICIO</h1>
 @endsection

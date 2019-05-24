@@ -14,11 +14,12 @@ class PagesController extends Controller
       return view('public.pages.index');
     }
 
+    /** Página de contacto */
     public function contact()
     {
       return view('public.pages.contact');
     }
-    
+    /** Página acerca de */
     public function about()
     {
       return view('public.pages.about');

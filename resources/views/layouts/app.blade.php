@@ -1,3 +1,4 @@
+<!-- Layout de la aplicación -->
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -19,9 +20,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="{{ Auth::check()?'bg-warning text-dark':'bg-light text-dark' }}">
     <div id="app">
-        <nav class="navbar navbar-expand-md {{ Auth::check()?'navbar-dark bg-dark':'navbar-light' }} navbar-laravel">
+        <nav class="navbar navbar-expand-md {{ Auth::check()?'navbar-dark bg-dark':'navbar-light' }} navbar-laravel" style=" background-color: #ff7c00;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'MEGAUPLOAD') }}
@@ -33,17 +34,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Archivos
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="{{ route('files.index') }}">Lista de Arhivos</a>
-                              @auth
-                              <a class="dropdown-item" href="{{ route('files.create') }}">Subir archivo</a>
-                              @endauth
-                            </div>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('files.index') }}">
+                        Archivos subidos
+                        </a>
+                    </li>
+                    @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('files.create') }}">Subir Archivo</a>
+                    </li>
+                    @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -59,11 +59,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
                                 </li>
                             @endif
                         @else
@@ -76,7 +76,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Cerrar Sesión') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -25,7 +25,8 @@ class FileRequest extends FormRequest
     {
         return [
             'name'         => 'required|min:3',
-            'description'    => 'required'
+            'description'    => 'required',
+            'archivo'        => 'required'
         ];
     }
 
@@ -35,13 +36,15 @@ class FileRequest extends FormRequest
             'name.required'=> 'El :attribute es requerido.',
             'name.min' => 'El :attribute debe tener al menos 3 caracteres',
             'description.required'=> 'La :attribute es requerida.',
+            'archivo.required'=> 'El necesario subir un :attribute '
         ];
     }
 
     public function attributes(){
         return [
             'name'     => 'nombre del archivo',
-            'description' => 'descripción del archivo'
+            'description' => 'descripción del archivo',
+            'archivo' => 'archivo'
 
         ];
     }

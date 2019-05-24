@@ -2,8 +2,10 @@
 
 @section('title', 'Edit file')
 
+<!-- Vista del edit de los archivos -->
 @section('content')
-<form action="/files/{{ $file->id }}" method="post" novalidate>
+<h1>Editar archivo</h1>
+<form action="/files/{{ $file->id }}" method="post" enctype="multipart/form-data" novalidate>
 
     @csrf
     @method('patch')

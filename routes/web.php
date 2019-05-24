@@ -19,10 +19,12 @@ Route::get('/about', 'PagesController@about')->name('about');
 // Rutas para la entidad Files
 Route::resource('/files', 'FilesController');
 
+// Rutas de autentificación
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Rutas Archivo-Usuario
 Route::get('/users/{user}/files', 'UserFilesController@index')->name('userfiles.index');
 
 

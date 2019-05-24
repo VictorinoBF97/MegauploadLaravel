@@ -8,13 +8,14 @@
                 <div class="card-header">Tablón de notificaciones</div>
 
                 <div class="card-body">
+                    <h3>Registro</h3>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    ¡Te has logueado con éxito!
+                    ¡Se ha realizado el registrado con éxito!
                 </div>
             </div>
         </div>

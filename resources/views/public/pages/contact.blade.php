@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+<!-- Vista de contacto -->
 @section('title', 'Contact MEGAUPLOAD')
 
 @section('content')

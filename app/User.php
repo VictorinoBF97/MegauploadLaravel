@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','slug','email', 'password',
+        'name','slug','email','phone', 'password',
     ];
 
     /**
@@ -40,6 +40,11 @@ class User extends Authenticatable
     public function files()
     {
         return $this->hasMany(Archivo::class);
+    }
+
+    public function getFirstNameAttribute($value)
+    {
+        return ucfirst($value);
     }
 
     public function owns()

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Crear una nueva instancia en el controlador
      *
      * @return void
      */
@@ -17,12 +17,12 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Mostrar el tablón de notificaciones
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        return view('home');
+        return view('public.pages.index');
     }
 }
